@@ -18,13 +18,12 @@ int blake2b(void) {
     ARRAY(hash1, 64);
     ARRAY(hash2, 64);
     ARRAY(key,  64);
-    ARRAY(in,   64);
+    ARRAY(in,   128);
 	int status = 0;
 
-    for(size_t h = 1; h <= 64; h += 8)
-        for(size_t k = 0; k <= 64; k += 8)
-            for(size_t i = 0; i <= 64; i += 8) {
-            	hash1[1] = 123;
+    for(size_t h = 1; h <= 64; h += 1)
+        for(size_t k = 0; k <= 64; k += 1)
+            for(size_t i = 0; i <= 128; i += 1) {
                 crypto_blake2b_general(hash1, h, key, k, in, i);
                 Hacl_Blake2b_32_blake2b(h, hash2, i, in, k, key);
                 status |= crypto_verify64(hash1, hash2);
